@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 // --- DEFINED CONSTANTS ---
-// Replaced "Magic Numbers" for readability and easy maintenance.
+// Easy maintenance.
 #define MAX_GUESSES 6
 #define LOSS_SENTINEL 100
 #define MAX_WORD_LENGTH 20 // A safe maximum length for any word
@@ -40,22 +40,20 @@ int wordlFunction(const char *answer) {
 
         printf("Enter guess: ");
 
-        // 1. Read the line safely using fgets.
+        // Read the line safely using fgets.
         if (fgets(guess, sizeof(guess), stdin) == NULL) {
             printf("\n"); // Handle Ctrl+D or input error.
             break;
         }
 
-        // 2. Remove the trailing newline character.
+        // Remove the trailing newline character.
         guess[strcspn(guess, "\n")] = 0;
 
-        // 3. Validate the length of the input.
+        // Validate the length of the input.
         if (strlen(guess) != length) {
             printf("Your guess must be exactly %d letters long. Try again.\n", length);
             continue; // Skip to the next loop iteration without penalty.
         }
-
-        // --- END OF VALIDATION ---
 
         // Convert guess to lowercase for fair comparison.
         for(int i = 0; guess[i]; i++){
@@ -78,7 +76,7 @@ int wordlFunction(const char *answer) {
         char answerCopy[length + 1];
         strcpy(answerCopy, answer);
 
-        // PASS 1: Find all GREENS.
+        // Find all GREENS.
         for (int i = 0; i < length; i++) {
             if (guess[i] == answerCopy[i]) {
                 feedback[i] = 'G';
@@ -86,7 +84,7 @@ int wordlFunction(const char *answer) {
             }
         }
 
-        // PASS 2: Find all YELLOWS from remaining letters.
+        // Find all YELLOWS from remaining letters.
         for (int i = 0; i < length; i++) {
             if (feedback[i] != 'G') {
                 char* match = strchr(answerCopy, guess[i]);
