@@ -1,1 +1,5 @@
+# Ignore the compiled executable
 /wordle
+
+# Ignore macOS folder metadata files
+.DS_Store
