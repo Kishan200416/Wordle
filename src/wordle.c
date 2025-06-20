@@ -29,7 +29,7 @@ void setColour(const char *colour) {
 
 // Runs the main game loop, including input validation and coloring.
 int wordlFunction(const char *answer) {
-    int length = strlen(answer);
+    size_t length = strlen(answer);
     int number = 1;
     
     while (1) {
@@ -125,7 +125,7 @@ int main() {
     char buffer[MAX_WORD_LENGTH];
 
     // Open the word list file.
-    FILE *file = fopen("wordleList.txt", "r");
+    FILE *file = fopen("assets/wordleList.txt", "r");
     if (file == NULL) {
         perror("Error: Cannot open wordleList.txt");
         return 1;

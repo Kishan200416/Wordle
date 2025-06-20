@@ -3,3 +3,6 @@
 
 # Ignore macOS folder metadata files
 .DS_Store
+
+# Ignore macOS debug symbol files
+/wordle.dSYM
